@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>송도달빛축제공원역 AI TOUR</title>
 
-<!-- ==================================================
-     카카오 지도 SDK
-     
-     ★ 아래 YOUR_KAKAO_JAVASCRIPT_KEY 부분에
-       카카오 JavaScript 키를 입력하세요.
-================================================== -->
+<!-- Leaflet 지도 -->
+<link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 
-<script src=" https://dapi.kakao.com/v2/maps/sdk.js?appkey=4a73e58e24b2b65e68c898525219783e"></script>
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+</script>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: Arial, "Noto Sans KR", sans-serif;
+    font-family:
+        Arial,
+        "Noto Sans KR",
+        sans-serif;
+
     background: #f4f7fa;
     color: #172b4d;
 }
@@ -40,9 +47,11 @@ body {
     max-width: 1200px;
     margin: auto;
     height: 76px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding: 0 25px;
 }
 
@@ -55,12 +64,16 @@ body {
 .logo-icon {
     width: 42px;
     height: 42px;
+
     border-radius: 10px;
+
     background: #005bac;
     color: white;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-size: 21px;
 }
 
@@ -77,7 +90,7 @@ body {
 }
 
 /* =========================
-   MAIN
+   CONTAINER
 ========================= */
 
 .container {
@@ -86,11 +99,24 @@ body {
     padding: 0 25px;
 }
 
+/* =========================
+   HERO
+========================= */
+
 .hero {
-    background: linear-gradient(135deg, #005bac, #0086d1);
+    background:
+        linear-gradient(
+            135deg,
+            #005bac,
+            #0086d1
+        );
+
     border-radius: 22px;
+
     color: white;
+
     padding: 40px;
+
     margin-bottom: 25px;
 }
 
@@ -105,7 +131,9 @@ body {
 
 .hero p {
     margin: 0;
+
     opacity: .9;
+
     line-height: 1.7;
 }
 
@@ -115,12 +143,18 @@ body {
 
 .weather {
     background: white;
+
     border-radius: 18px;
+
     padding: 22px;
+
     margin-bottom: 20px;
+
     display: flex;
     align-items: center;
+
     gap: 20px;
+
     border: 1px solid #e5e8eb;
 }
 
@@ -134,8 +168,32 @@ body {
 
 .weather-info span {
     display: block;
+
     color: #667085;
+
     margin-top: 5px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.section-title span {
+    color: #667085;
+    font-size: 13px;
 }
 
 /* =========================
@@ -144,29 +202,41 @@ body {
 
 .card {
     background: white;
+
     border-radius: 18px;
+
     padding: 25px;
+
     margin-bottom: 20px;
+
     border: 1px solid #e5e8eb;
 }
 
 .card h2 {
     margin-top: 0;
+
     font-size: 20px;
 }
 
 .option-group {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 10px;
 }
 
 .option {
     border: 1px solid #d9dee5;
+
     background: white;
+
     border-radius: 10px;
+
     padding: 12px 18px;
+
     cursor: pointer;
+
     font-size: 14px;
 }
 
@@ -176,8 +246,159 @@ body {
 
 .option.selected {
     background: #005bac;
+
     color: white;
+
     border-color: #005bac;
+}
+
+/* =========================
+   EVENT / TOUR CARD
+========================= */
+
+.data-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 16px;
+}
+
+.info-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    border: 1px solid #e5e8eb;
+
+    transition: .2s;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.08);
+}
+
+.info-image {
+
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    background: #edf2f7;
+}
+
+.info-body {
+
+    padding: 18px;
+}
+
+.badge {
+
+    display: inline-block;
+
+    background: #eaf4ff;
+
+    color: #005bac;
+
+    border-radius: 20px;
+
+    padding: 5px 9px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 9px;
+}
+
+.badge.event {
+
+    background: #fff1f1;
+
+    color: #e5484d;
+}
+
+.info-body h3 {
+
+    margin: 0 0 9px;
+
+    font-size: 17px;
+}
+
+.info-body p {
+
+    margin: 5px 0;
+
+    color: #667085;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.detail-button {
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    border: 0;
+
+    background: #f2f6fa;
+
+    color: #005bac;
+
+    border-radius: 9px;
+
+    padding: 10px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.detail-button:hover {
+
+    background: #005bac;
+
+    color: white;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.loading {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #667085;
+}
+
+.empty {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #667085;
+
+    background: #f8fafc;
+
+    border-radius: 12px;
 }
 
 /* =========================
@@ -185,18 +406,28 @@ body {
 ========================= */
 
 .button {
+
     width: 100%;
+
     border: 0;
+
     border-radius: 13px;
+
     padding: 17px;
+
     background: #005bac;
+
     color: white;
+
     font-size: 17px;
+
     font-weight: 700;
+
     cursor: pointer;
 }
 
 .button:hover {
+
     background: #004987;
 }
 
@@ -205,15 +436,22 @@ body {
 ========================= */
 
 .result {
+
     display: none;
 }
 
 .ai-message {
+
     background: #eef7ff;
+
     border-left: 5px solid #005bac;
+
     padding: 20px;
+
     border-radius: 12px;
+
     margin-bottom: 20px;
+
     line-height: 1.7;
 }
 
@@ -222,33 +460,48 @@ body {
 ========================= */
 
 .map-card {
+
     background: white;
+
     border-radius: 18px;
+
     overflow: hidden;
+
     border: 1px solid #e5e8eb;
+
     margin-bottom: 20px;
 }
 
 .map-header {
+
     padding: 22px;
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 }
 
 .map-header h2 {
+
     margin: 0;
+
     font-size: 20px;
 }
 
 .map-header span {
+
     color: #005bac;
+
     font-weight: 700;
 }
 
 #map {
+
     width: 100%;
-    height: 520px;
+
+    height: 500px;
 }
 
 /* =========================
@@ -256,389 +509,659 @@ body {
 ========================= */
 
 .route-card {
+
     background: white;
+
     border-radius: 18px;
+
     padding: 25px;
+
     border: 1px solid #e5e8eb;
 }
 
 .route-item {
+
     display: flex;
+
     gap: 15px;
+
     position: relative;
+
     padding-bottom: 25px;
 }
 
 .route-item:last-child {
+
     padding-bottom: 0;
 }
 
 .route-dot {
+
     width: 42px;
+
     height: 42px;
+
     flex-shrink: 0;
+
     border-radius: 50%;
+
     background: #eaf4ff;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     font-size: 20px;
+
     z-index: 2;
 }
 
 .route-content strong {
+
     display: block;
+
     font-size: 16px;
 }
 
 .route-content span {
+
     display: block;
+
     color: #667085;
+
     font-size: 13px;
+
     margin-top: 5px;
 }
 
 .route-line {
+
     position: absolute;
+
     left: 20px;
+
     top: 42px;
+
     bottom: 0;
+
     width: 2px;
+
     background: #d9e7f5;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+
+    display: none;
+
+    position: fixed;
+
+    z-index: 9999;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.55);
+
+    padding: 25px;
+
+    overflow-y: auto;
+}
+
+.modal-content {
+
+    background: white;
+
+    max-width: 700px;
+
+    margin: 30px auto;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+.modal-image {
+
+    width: 100%;
+
+    max-height: 330px;
+
+    object-fit: cover;
+}
+
+.modal-body {
+
+    padding: 28px;
+}
+
+.modal-body h2 {
+
+    margin-top: 0;
+}
+
+.modal-close {
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 15px;
+
+    background: rgba(0,0,0,.6);
+
+    color: white;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    width: 38px;
+
+    height: 38px;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.detail-row {
+
+    border-bottom: 1px solid #edf0f2;
+
+    padding: 12px 0;
+
+    line-height: 1.6;
+}
+
+.detail-row strong {
+
+    display: inline-block;
+
+    width: 80px;
+
+    color: #005bac;
+}
+
+.homepage-button {
+
+    display: block;
+
+    margin-top: 20px;
+
+    padding: 13px;
+
+    text-align: center;
+
+    background: #005bac;
+
+    color: white;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: bold;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
+@media(max-width:850px) {
+
+    .data-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
 @media(max-width:700px) {
 
-    .hero h1 {
-        font-size: 26px;
+    .container {
+
+        padding: 0 15px;
     }
 
     .hero {
+
         padding: 28px;
     }
 
-    #map {
-        height: 420px;
+    .hero h1 {
+
+        font-size: 26px;
     }
 
     .header-inner {
+
         padding: 0 15px;
     }
 
-    .container {
-        padding: 0 15px;
+    .data-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    #map {
+
+        height: 420px;
     }
 
     .map-header {
+
         flex-direction: column;
+
         align-items: flex-start;
+
         gap: 8px;
     }
 }
+
 </style>
+
 </head>
 
 <body>
 
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
 <header class="header">
 
-    <div class="header-inner">
+<div class="header-inner">
 
-        <div class="logo">
+    <div class="logo">
 
-            <div class="logo-icon">
-                🚇
-            </div>
-
-            <div class="logo-text">
-
-                <strong>
-                    송도달빛축제공원역
-                </strong>
-
-                <span>
-                    AI SMART TOUR
-                </span>
-
-            </div>
-
+        <div class="logo-icon">
+            🚇
         </div>
 
-        <div>
-            인천교통공사
+        <div class="logo-text">
+
+            <strong>
+                송도달빛축제공원역
+            </strong>
+
+            <span>
+                AI SMART TOUR
+            </span>
+
         </div>
 
     </div>
+
+    <div>
+        인천교통공사
+    </div>
+
+</div>
 
 </header>
 
 
 <main class="container">
 
-    <!-- HERO -->
 
-    <section class="hero">
+<!-- ==================================================
+     HERO
+================================================== -->
 
-        <small>
-            AI 기반 도시철도 관광 활성화 서비스
-        </small>
+<section class="hero">
 
-        <h1>
-            오늘은 송도 어디로<br>
-            가볼까요?
-        </h1>
+    <small>
+        AI 기반 도시철도 관광 활성화 서비스
+    </small>
 
-        <p>
-            실시간 날씨와 방문 목적을 분석해
-            송도달빛축제공원역에서 출발하는
-            맞춤 여행코스를 추천합니다.
-        </p>
+    <h1>
+        오늘은 송도 어디로<br>
+        가볼까요?
+    </h1>
 
-    </section>
+    <p>
+        송도달빛축제공원역 주변의
+        실시간 행사와 관광정보를 확인하고
+        나에게 맞는 여행코스를 추천받아보세요.
+    </p>
 
+</section>
 
-    <!-- WEATHER -->
 
-    <section class="weather">
+<!-- ==================================================
+     WEATHER
+================================================== -->
 
-        <div
-            class="weather-icon"
-            id="weatherIcon"
-        >
-            ☀️
-        </div>
+<section class="weather">
 
-        <div class="weather-info">
+    <div
+        class="weather-icon"
+        id="weatherIcon">
+        ☀️
+    </div>
 
-            <strong id="temperature">
-                --℃
-            </strong>
+    <div class="weather-info">
 
-            <span id="weatherText">
-                날씨 확인 중...
-            </span>
+        <strong id="temperature">
+            --℃
+        </strong>
 
-            <span id="weatherDetail">
-                송도달빛축제공원역 기준
-            </span>
+        <span id="weatherText">
+            날씨 확인 중...
+        </span>
 
-        </div>
+        <span id="weatherDetail">
+            송도달빛축제공원역 기준
+        </span>
 
-    </section>
+    </div>
 
+</section>
 
-    <!-- PEOPLE -->
 
-    <section class="card">
+<!-- ==================================================
+     EVENTS
+================================================== -->
 
-        <h2>
-            누구와 함께 방문하시나요?
-        </h2>
+<section class="card">
 
-        <div class="option-group">
+<div class="section-title">
 
-            <button
-                class="option selected"
-                onclick="selectOption(this,'people')"
-            >
-                👨 👩 👧 가족
-            </button>
+    <h2>
+        📅 송도 주변 행사
+    </h2>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'people')"
-            >
-                ❤️ 커플
-            </button>
+    <span>
+        한국관광공사 실시간 관광정보
+    </span>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'people')"
-            >
-                🧑 🤝 🧑 친구
-            </button>
+</div>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'people')"
-            >
-                👤 혼자
-            </button>
+<div id="eventList">
 
-        </div>
+    <div class="loading">
+        주변 행사 정보를 불러오는 중입니다...
+    </div>
 
-    </section>
+</div>
 
+</section>
 
-    <!-- ACTIVITY -->
 
-    <section class="card">
+<!-- ==================================================
+     TOURIST INFORMATION
+================================================== -->
 
-        <h2>
-            무엇을 하고 싶으신가요?
-        </h2>
+<section class="card">
 
-        <div class="option-group">
+<div class="section-title">
 
-            <button
-                class="option selected"
-                onclick="selectOption(this,'activity')"
-            >
-                🌳 산책
-            </button>
+    <h2>
+        📍 송도 주변 관광정보
+    </h2>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'activity')"
-            >
-                📸 사진
-            </button>
+    <span>
+        자세히 보기에서 상세정보 확인
+    </span>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'activity')"
-            >
-                🎨 문화
-            </button>
+</div>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'activity')"
-            >
-                🌙 야경
-            </button>
+<div id="tourList">
 
-        </div>
+    <div class="loading">
+        관광정보를 불러오는 중입니다...
+    </div>
 
-    </section>
+</div>
 
+</section>
 
-    <!-- TIME -->
 
-    <section class="card">
+<!-- ==================================================
+     PEOPLE
+================================================== -->
 
-        <h2>
-            얼마나 머무르실 예정인가요?
-        </h2>
+<section class="card">
 
-        <div class="option-group">
+<h2>
+    누구와 함께 방문하시나요?
+</h2>
 
-            <button
-                class="option selected"
-                onclick="selectOption(this,'time')"
-            >
-                1시간
-            </button>
+<div class="option-group">
 
-            <button
-                class="option"
-                onclick="selectOption(this,'time')"
-            >
-                2시간
-            </button>
+<button
+    class="option selected"
+    onclick="selectOption(this,'people')">
+    👨‍👩‍👧 가족
+</button>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'time')"
-            >
-                3시간
-            </button>
+<button
+    class="option"
+    onclick="selectOption(this,'people')">
+    ❤️ 커플
+</button>
 
-            <button
-                class="option"
-                onclick="selectOption(this,'time')"
-            >
-                4시간+
-            </button>
+<button
+    class="option"
+    onclick="selectOption(this,'people')">
+    🧑‍🤝‍🧑 친구
+</button>
 
-        </div>
+<button
+    class="option"
+    onclick="selectOption(this,'people')">
+    👤 혼자
+</button>
 
-    </section>
+</div>
 
+</section>
 
-    <!-- BUTTON -->
 
-    <button
-        class="button"
-        onclick="recommend()"
-    >
-        ✨ AI 맞춤 여행코스 추천
-    </button>
+<!-- ==================================================
+     ACTIVITY
+================================================== -->
 
+<section class="card">
 
-    <!-- RESULT -->
+<h2>
+    무엇을 하고 싶으신가요?
+</h2>
 
-    <section
-        class="result"
-        id="result"
-    >
+<div class="option-group">
 
-        <br>
+<button
+    class="option selected"
+    onclick="selectOption(this,'activity')">
+    🌳 산책
+</button>
 
-        <!-- AI MESSAGE -->
+<button
+    class="option"
+    onclick="selectOption(this,'activity')">
+    📸 사진
+</button>
 
-        <div
-            class="ai-message"
-            id="aiMessage"
-        ></div>
+<button
+    class="option"
+    onclick="selectOption(this,'activity')">
+    🎨 문화
+</button>
 
+<button
+    class="option"
+    onclick="selectOption(this,'activity')">
+    🌙 야경
+</button>
 
-        <!-- MAP -->
+</div>
 
-        <div class="map-card">
+</section>
 
-            <div class="map-header">
 
-                <h2>
-                    🗺️ AI 추천 여행지도
-                </h2>
+<!-- ==================================================
+     TIME
+================================================== -->
 
-                <span id="routeSummary">
-                    -
-                </span>
+<section class="card">
 
-            </div>
+<h2>
+    얼마나 머무르실 예정인가요?
+</h2>
 
-            <div id="map"></div>
+<div class="option-group">
 
-        </div>
+<button
+    class="option selected"
+    onclick="selectOption(this,'time')">
+    1시간
+</button>
 
+<button
+    class="option"
+    onclick="selectOption(this,'time')">
+    2시간
+</button>
 
-        <!-- ROUTE -->
+<button
+    class="option"
+    onclick="selectOption(this,'time')">
+    3시간
+</button>
 
-        <div class="route-card">
+<button
+    class="option"
+    onclick="selectOption(this,'time')">
+    4시간+
+</button>
 
-            <h2>
-                🚶 추천 이동코스
-            </h2>
+</div>
 
-            <div id="route"></div>
+</section>
 
-        </div>
 
-    </section>
+<!-- ==================================================
+     AI BUTTON
+================================================== -->
+
+<button
+    class="button"
+    onclick="recommend()">
+
+    ✨ AI 맞춤 여행코스 추천
+
+</button>
+
+
+<!-- ==================================================
+     RESULT
+================================================== -->
+
+<section
+    class="result"
+    id="result">
+
+<br>
+
+
+<div
+    class="ai-message"
+    id="aiMessage">
+</div>
+
+
+<!-- MAP -->
+
+<div class="map-card">
+
+<div class="map-header">
+
+<h2>
+    🗺️ AI 추천 여행지도
+</h2>
+
+<span id="routeSummary">
+    -
+</span>
+
+</div>
+
+<div id="map"></div>
+
+</div>
+
+
+<!-- ROUTE -->
+
+<div class="route-card">
+
+<h2>
+    🚶 추천 이동코스
+</h2>
+
+<div id="route"></div>
+
+</div>
+
+</section>
+
 
 </main>
+
+
+<!-- ==================================================
+     DETAIL MODAL
+================================================== -->
+
+<div
+    class="modal"
+    id="detailModal"
+    onclick="closeModal(event)">
+
+<button
+    class="modal-close"
+    onclick="closeDetailModal()">
+    ×
+</button>
+
+<div
+    class="modal-content"
+    id="modalContent">
+
+</div>
+
+</div>
 
 
 <script>
 
 /* ==================================================
-   ★★★ 카카오 JavaScript 키 ★★★
-
-   아래 부분에 카카오 JavaScript 키를 입력하세요.
-
-   예:
-   const KAKAO_MAP_KEY = "실제키";
-
-   ※ 위쪽 SDK 주소에도 같은 키를 입력해야 합니다.
+   ★ 한국관광공사 API 설정
 ================================================== */
 
-const KAKAO_MAP_KEY = "YOUR_KAKAO_JAVASCRIPT_KEY";
+/*
+    여기에 본인의 일반 인증키를 입력하세요.
+
+    예:
+
+    const TOUR_API_KEY =
+    "여기에_인증키";
+
+*/
+
+const TOUR_API_KEY =
+    "YOUR_TOUR_API_KEY";
+
+
+const TOUR_API =
+    "https://apis.data.go.kr/B551011/KorService2";
 
 
 /* ==================================================
@@ -657,61 +1180,12 @@ const STATION = {
 
 
 /* ==================================================
-   관광지
-================================================== */
-
-const PLACES = [
-
-    {
-        name: "송도달빛축제공원",
-        lat: 37.4073,
-        lng: 126.6225,
-        icon: "🌳",
-        time: 50
-    },
-
-    {
-        name: "송도센트럴파크",
-        lat: 37.3911,
-        lng: 126.6398,
-        icon: "🌊",
-        time: 70
-    },
-
-    {
-        name: "G타워 전망대",
-        lat: 37.3947,
-        lng: 126.6432,
-        icon: "🏙️",
-        time: 50
-    },
-
-    {
-        name: "트라이보울",
-        lat: 37.3938,
-        lng: 126.6347,
-        icon: "🎨",
-        time: 50
-    },
-
-    {
-        name: "인천도시역사관",
-        lat: 37.3921,
-        lng: 126.6402,
-        icon: "🏛️",
-        time: 60
-    }
-
-];
-
-
-/* ==================================================
    선택값
 ================================================== */
 
 let selected = {
 
-    people: "👨 👩 👧 가족",
+    people: "👨‍👩‍👧 가족",
 
     activity: "🌳 산책",
 
@@ -721,117 +1195,1046 @@ let selected = {
 
 
 /* ==================================================
+   데이터
+================================================== */
+
+let events = [];
+
+let touristPlaces = [];
+
+
+/* ==================================================
+   지도
+================================================== */
+
+let map = null;
+
+let markers = [];
+
+let routeLine = null;
+
+
+/* ==================================================
    옵션 선택
 ================================================== */
 
 function selectOption(element, type) {
 
-    const parent = element.parentElement;
+    const parent =
+        element.parentElement;
 
     parent
         .querySelectorAll(".option")
         .forEach(button => {
 
-            button.classList.remove("selected");
+            button.classList.remove(
+                "selected"
+            );
 
         });
 
-    element.classList.add("selected");
+    element.classList.add(
+        "selected"
+    );
 
-    selected[type] = element.innerText;
+    selected[type] =
+        element.innerText;
 
 }
 
 
 /* ==================================================
-   날씨
+   API URL
 ================================================== */
 
-async function loadWeather() {
+function makeApiUrl(endpoint, params) {
+
+    const url =
+        new URL(
+            TOUR_API + "/" + endpoint
+        );
+
+    url.searchParams.set(
+        "serviceKey",
+        TOUR_API_KEY
+    );
+
+    url.searchParams.set(
+        "MobileOS",
+        "ETC"
+    );
+
+    url.searchParams.set(
+        "MobileApp",
+        "SongdoAITour"
+    );
+
+    url.searchParams.set(
+        "_type",
+        "json"
+    );
+
+    url.searchParams.set(
+        "numOfRows",
+        "30"
+    );
+
+    url.searchParams.set(
+        "pageNo",
+        "1"
+    );
+
+    Object.entries(params)
+        .forEach(([key,value]) => {
+
+            url.searchParams.set(
+                key,
+                value
+            );
+
+        });
+
+    return url.toString();
+
+}
+
+
+/* ==================================================
+   현재 날짜
+================================================== */
+
+function todayString() {
+
+    const now =
+        new Date();
+
+    const y =
+        now.getFullYear();
+
+    const m =
+        String(
+            now.getMonth() + 1
+        ).padStart(2,"0");
+
+    const d =
+        String(
+            now.getDate()
+        ).padStart(2,"0");
+
+    return `${y}${m}${d}`;
+
+}
+
+
+/* ==================================================
+   행사 가져오기
+================================================== */
+
+async function loadEvents() {
+
+    const start =
+        todayString();
+
+    const endDate =
+        new Date();
+
+    endDate.setDate(
+        endDate.getDate() + 90
+    );
+
+    const end =
+        endDate
+            .toISOString()
+            .slice(0,10)
+            .replaceAll("-","");
+
 
     try {
 
-        const url =
-            " https://api.open-meteo.com/v1/forecast"
-            +
-            "?latitude=37.4079"
-            +
-            "&longitude=126.6253"
-            +
-            "&current=temperature_2m,precipitation,weather_code"
-            +
-            "&timezone=Asia%2FSeoul";
+        /*
+          contentTypeId 15 =
+          축제 / 공연 / 행사
+        */
 
-        const response = await fetch(url);
+        const url =
+            makeApiUrl(
+                "search2",
+                {
+
+                    contentTypeId: "15",
+
+                    areaCode: "2",
+
+                    arrange: "Q",
+
+                    eventStartDate: start,
+
+                    eventEndDate: end
+
+                }
+            );
+
+
+        const response =
+            await fetch(url);
+
 
         if (!response.ok) {
-            throw new Error("날씨 API 응답 오류");
-        }
 
-        const data = await response.json();
-
-        const current = data.current;
-
-        let icon = "☀️";
-        let text = "맑음";
-
-
-        if (current.weather_code >= 51) {
-
-            icon = "🌧️";
-            text = "비";
-
-        }
-
-        else if (current.weather_code >= 45) {
-
-            icon = "🌫️";
-            text = "안개";
-
-        }
-
-        else if (current.weather_code >= 3) {
-
-            icon = "☁️";
-            text = "흐림";
+            throw new Error(
+                "행사 API 오류"
+            );
 
         }
 
 
-        document.getElementById(
-            "weatherIcon"
-        ).innerText = icon;
+        const data =
+            await response.json();
 
 
-        document.getElementById(
-            "temperature"
-        ).innerText =
-            Math.round(current.temperature_2m) + "℃";
+        const items =
+            data.response
+                ?.body
+                ?.items
+                ?.item;
 
 
-        document.getElementById(
-            "weatherText"
-        ).innerText = text;
+        events =
+            Array.isArray(items)
+                ? items
+                : items
+                    ? [items]
+                    : [];
 
 
-        document.getElementById(
-            "weatherDetail"
-        ).innerText =
-            "송도달빛축제공원역 실시간 날씨";
+        /*
+          송도 관련 행사 우선
+        */
+
+        events.sort(
+            (a,b) => {
+
+                const aText =
+                    `${a.title || ""} ${a.addr1 || ""}`;
+
+                const bText =
+                    `${b.title || ""} ${b.addr1 || ""}`;
+
+                const aSongdo =
+                    aText.includes("송도");
+
+                const bSongdo =
+                    bText.includes("송도");
+
+                return bSongdo - aSongdo;
+
+            }
+        );
+
+
+        renderEvents();
+
 
     }
-
     catch(error) {
 
-        console.log(
-            "날씨 API 오류",
+        console.error(
             error
         );
 
         document.getElementById(
-            "weatherText"
-        ).innerText =
-            "날씨 정보를 불러오지 못했습니다.";
+            "eventList"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                행사 정보를 불러오지 못했습니다.
+
+                <br><br>
+
+                API 인증키 또는
+                데이터 API 사용 설정을 확인해주세요.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   관광지 가져오기
+================================================== */
+
+async function loadTouristPlaces() {
+
+    try {
+
+        /*
+          locationBasedList2
+
+          송도달빛축제공원역 좌표 기준
+          반경 8km
+        */
+
+        const url =
+            makeApiUrl(
+                "locationBasedList2",
+                {
+
+                    mapX:
+                        STATION.lng,
+
+                    mapY:
+                        STATION.lat,
+
+                    radius:
+                        "8000",
+
+                    contentTypeId:
+                        "12",
+
+                    arrange:
+                        "E"
+
+                }
+            );
+
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "관광 API 오류"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const items =
+            data.response
+                ?.body
+                ?.items
+                ?.item;
+
+
+        touristPlaces =
+            Array.isArray(items)
+                ? items
+                : items
+                    ? [items]
+                    : [];
+
+
+        /*
+          최대 9개
+        */
+
+        touristPlaces =
+            touristPlaces.slice(
+                0,
+                9
+            );
+
+
+        renderTouristPlaces();
+
+    }
+    catch(error) {
+
+        console.error(
+            error
+        );
+
+        document.getElementById(
+            "tourList"
+        ).innerHTML = `
+
+            <div class="empty">
+
+                관광정보를 불러오지 못했습니다.
+
+                <br><br>
+
+                API 인증키와
+                API 사용 설정을 확인해주세요.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* ==================================================
+   행사 화면
+================================================== */
+
+function renderEvents() {
+
+    const container =
+        document.getElementById(
+            "eventList"
+        );
+
+
+    if (!events.length) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                현재 확인되는 행사가 없습니다.
+
+                <br>
+
+                관광정보를 확인해보세요.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="data-grid">
+
+            ${
+                events
+                    .slice(0,6)
+                    .map(
+                        (event,index) => {
+
+                            const image =
+                                event.firstimage ||
+                                "https://via.placeholder.com/600x400?text=EVENT";
+
+                            return `
+
+                                <article
+                                    class="info-card">
+
+                                    <img
+                                        class="info-image"
+                                        src="${image}"
+                                        alt=""
+                                        onerror="this.src='https://via.placeholder.com/600x400?text=EVENT'"
+                                    >
+
+                                    <div
+                                        class="info-body">
+
+                                        <span
+                                            class="badge event">
+                                            행사
+                                        </span>
+
+                                        <h3>
+                                            ${escapeHTML(
+                                                event.title ||
+                                                "행사"
+                                            )}
+                                        </h3>
+
+                                        <p>
+                                            📅
+                                            ${formatDate(
+                                                event.eventstartdate
+                                            )}
+                                            ~
+                                            ${formatDate(
+                                                event.eventenddate
+                                            )}
+                                        </p>
+
+                                        <p>
+                                            📍
+                                            ${escapeHTML(
+                                                event.addr1 ||
+                                                "장소 정보 없음"
+                                            )}
+                                        </p>
+
+                                        <button
+                                            class="detail-button"
+                                            onclick="showEventDetail(${index})">
+
+                                            행사 자세히 보기 →
+
+                                        </button>
+
+                                    </div>
+
+                                </article>
+
+                            `;
+
+                        }
+                    )
+                    .join("")
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   관광지 화면
+================================================== */
+
+function renderTouristPlaces() {
+
+    const container =
+        document.getElementById(
+            "tourList"
+        );
+
+
+    if (!touristPlaces.length) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                주변 관광정보가 없습니다.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = `
+
+        <div class="data-grid">
+
+            ${
+                touristPlaces
+                    .map(
+                        (place,index) => {
+
+                            const image =
+                                place.firstimage ||
+                                "https://via.placeholder.com/600x400?text=TOUR";
+
+                            return `
+
+                                <article
+                                    class="info-card">
+
+                                    <img
+                                        class="info-image"
+                                        src="${image}"
+                                        alt=""
+                                        onerror="this.src='https://via.placeholder.com/600x400?text=TOUR'"
+                                    >
+
+                                    <div
+                                        class="info-body">
+
+                                        <span
+                                            class="badge">
+                                            관광지
+                                        </span>
+
+                                        <h3>
+                                            ${escapeHTML(
+                                                place.title ||
+                                                "관광지"
+                                            )}
+                                        </h3>
+
+                                        <p>
+                                            📍
+                                            ${escapeHTML(
+                                                place.addr1 ||
+                                                ""
+                                            )}
+                                        </p>
+
+                                        <button
+                                            class="detail-button"
+                                            onclick="showTourDetail(${index})">
+
+                                            자세히 보기 →
+
+                                        </button>
+
+                                    </div>
+
+                                </article>
+
+                            `;
+
+                        }
+                    )
+                    .join("")
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==================================================
+   관광지 상세
+================================================== */
+
+async function showTourDetail(index) {
+
+    const place =
+        touristPlaces[index];
+
+
+    openModalLoading(
+        "관광정보를 불러오는 중..."
+    );
+
+
+    try {
+
+        const commonUrl =
+            makeApiUrl(
+                "detailCommon2",
+                {
+
+                    contentId:
+                        place.contentid,
+
+                    contentTypeId:
+                        place.contenttypeid,
+
+                    defaultYN:
+                        "Y",
+
+                    firstImageYN:
+                        "Y",
+
+                    areacodeYN:
+                        "Y",
+
+                    addrinfoYN:
+                        "Y",
+
+                    mapinfoYN:
+                        "Y",
+
+                    overviewYN:
+                        "Y"
+
+                }
+            );
+
+
+        const response =
+            await fetch(
+                commonUrl
+            );
+
+
+        const data =
+            await response.json();
+
+
+        const item =
+            data.response
+                ?.body
+                ?.items
+                ?.item;
+
+
+        const detail =
+            Array.isArray(item)
+                ? item[0]
+                : item || place;
+
+
+        openTourModal(
+            detail
+        );
+
+    }
+    catch(error) {
+
+        console.error(error);
+
+        openTourModal(
+            place
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   행사 상세
+================================================== */
+
+async function showEventDetail(index) {
+
+    const event =
+        events[index];
+
+
+    openModalLoading(
+        "행사 정보를 불러오는 중..."
+    );
+
+
+    try {
+
+        const commonUrl =
+            makeApiUrl(
+                "detailCommon2",
+                {
+
+                    contentId:
+                        event.contentid,
+
+                    contentTypeId:
+                        event.contenttypeid,
+
+                    defaultYN:
+                        "Y",
+
+                    firstImageYN:
+                        "Y",
+
+                    areacodeYN:
+                        "Y",
+
+                    addrinfoYN:
+                        "Y",
+
+                    mapinfoYN:
+                        "Y",
+
+                    overviewYN:
+                        "Y"
+
+                }
+            );
+
+
+        const response =
+            await fetch(
+                commonUrl
+            );
+
+
+        const data =
+            await response.json();
+
+
+        const item =
+            data.response
+                ?.body
+                ?.items
+                ?.item;
+
+
+        const detail =
+            Array.isArray(item)
+                ? item[0]
+                : item || event;
+
+
+        openEventModal(
+            detail
+        );
+
+    }
+    catch(error) {
+
+        console.error(error);
+
+        openEventModal(
+            event
+        );
+
+    }
+
+}
+
+
+/* ==================================================
+   관광지 상세 모달
+================================================== */
+
+function openTourModal(place) {
+
+    const image =
+        place.firstimage ||
+        "https://via.placeholder.com/700x400?text=TOUR";
+
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = `
+
+        <img
+            class="modal-image"
+            src="${image}"
+            onerror="this.src='https://via.placeholder.com/700x400?text=TOUR'"
+        >
+
+        <div class="modal-body">
+
+            <span class="badge">
+                관광지
+            </span>
+
+            <h2>
+                ${escapeHTML(
+                    place.title ||
+                    "관광지"
+                )}
+            </h2>
+
+            <div class="detail-row">
+
+                <strong>주소</strong>
+
+                ${escapeHTML(
+                    place.addr1 ||
+                    "정보 없음"
+                )}
+
+            </div>
+
+            <div class="detail-row">
+
+                <strong>전화</strong>
+
+                ${escapeHTML(
+                    place.tel ||
+                    "정보 없음"
+                )}
+
+            </div>
+
+            <div class="detail-row">
+
+                <strong>관광정보</strong>
+
+                ${
+                    place.overview ||
+                    "상세 설명이 제공되지 않습니다."
+                }
+
+            </div>
+
+            ${
+                place.homepage
+                ?
+                `<a
+                    class="homepage-button"
+                    href="${stripHTML(place.homepage)}"
+                    target="_blank">
+                    🌐 공식 홈페이지 방문
+                </a>`
+                :
+                ""
+            }
+
+        </div>
+
+    `;
+
+
+    openModal();
+
+}
+
+
+/* ==================================================
+   행사 상세 모달
+================================================== */
+
+function openEventModal(event) {
+
+    const image =
+        event.firstimage ||
+        "https://via.placeholder.com/700x400?text=EVENT";
+
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = `
+
+        <img
+            class="modal-image"
+            src="${image}"
+            onerror="this.src='https://via.placeholder.com/700x400?text=EVENT'"
+        >
+
+        <div class="modal-body">
+
+            <span class="badge event">
+                행사
+            </span>
+
+            <h2>
+                ${escapeHTML(
+                    event.title ||
+                    "행사"
+                )}
+            </h2>
+
+            <div class="detail-row">
+
+                <strong>기간</strong>
+
+                ${formatDate(
+                    event.eventstartdate
+                )}
+
+                ~
+
+                ${formatDate(
+                    event.eventenddate
+                )}
+
+            </div>
+
+            <div class="detail-row">
+
+                <strong>장소</strong>
+
+                ${escapeHTML(
+                    event.addr1 ||
+                    event.eventplace ||
+                    "정보 없음"
+                )}
+
+            </div>
+
+            <div class="detail-row">
+
+                <strong>전화</strong>
+
+                ${escapeHTML(
+                    event.tel ||
+                    "정보 없음"
+                )}
+
+            </div>
+
+            <div class="detail-row">
+
+                <strong>행사정보</strong>
+
+                ${
+                    event.overview ||
+                    "상세 설명이 제공되지 않습니다."
+                }
+
+            </div>
+
+            ${
+                event.homepage
+                ?
+                `<a
+                    class="homepage-button"
+                    href="${stripHTML(event.homepage)}"
+                    target="_blank">
+                    🌐 행사 홈페이지 방문
+                </a>`
+                :
+                ""
+            }
+
+        </div>
+
+    `;
+
+
+    openModal();
+
+}
+
+
+/* ==================================================
+   MODAL
+================================================== */
+
+function openModal() {
+
+    document.getElementById(
+        "detailModal"
+    ).style.display = "block";
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+function openModalLoading(text) {
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = `
+
+        <div class="modal-body">
+
+            <div class="loading">
+                ${text}
+            </div>
+
+        </div>
+
+    `;
+
+    openModal();
+
+}
+
+
+function closeDetailModal() {
+
+    document.getElementById(
+        "detailModal"
+    ).style.display = "none";
+
+    document.body.style.overflow =
+        "auto";
+
+}
+
+
+function closeModal(event) {
+
+    if (
+        event.target.id ===
+        "detailModal"
+    ) {
+
+        closeDetailModal();
 
     }
 
@@ -845,9 +2248,13 @@ async function loadWeather() {
 function recommend() {
 
     const result =
-        document.getElementById("result");
+        document.getElementById(
+            "result"
+        );
 
-    result.style.display = "block";
+
+    result.style.display =
+        "block";
 
 
     const activity =
@@ -860,62 +2267,138 @@ function recommend() {
         selected.time;
 
 
-    let routePlaces;
+    /*
+       행사 우선 선택
+
+       현재 데이터 중
+       송도 관련 행사가 있으면
+       AI 추천에 우선 반영
+    */
+
+    const relevantEvents =
+        events
+            .filter(event => {
+
+                const text =
+                    `${event.title || ""}
+                     ${event.addr1 || ""}
+                     ${event.eventplace || ""}`;
+
+                return (
+                    text.includes("송도") ||
+                    text.includes("연수구")
+                );
+
+            })
+            .slice(0,2);
 
 
-    /* 사진 / 야경 */
+    /*
+       관광지 추천
+
+       활동 유형별로
+       다른 장소를 우선 배치
+    */
+
+    let places =
+        [...touristPlaces];
+
 
     if (
         activity.includes("사진") ||
         activity.includes("야경")
     ) {
 
-        routePlaces = [
-
-            PLACES[0],
-            PLACES[1],
-            PLACES[2]
-
-        ];
+        places =
+            places.slice(0,4);
 
     }
-
-
-    /* 문화 */
 
     else if (
         activity.includes("문화")
     ) {
 
-        routePlaces = [
-
-            PLACES[3],
-            PLACES[4],
-            PLACES[2]
-
-        ];
+        places =
+            places.slice(0,4);
 
     }
-
-
-    /* 산책 */
 
     else {
 
-        routePlaces = [
-
-            PLACES[0],
-            PLACES[1],
-            PLACES[2]
-
-        ];
+        places =
+            places.slice(0,4);
 
     }
 
 
-    /* ==================================================
-       AI 설명
-    ================================================== */
+    /*
+       체류시간에 따른 개수
+    */
+
+    if (
+        time.includes("1시간")
+    ) {
+
+        places =
+            places.slice(0,1);
+
+    }
+
+    else if (
+        time.includes("2시간")
+    ) {
+
+        places =
+            places.slice(0,2);
+
+    }
+
+    else if (
+        time.includes("3시간")
+    ) {
+
+        places =
+            places.slice(0,3);
+
+    }
+
+    else {
+
+        places =
+            places.slice(0,4);
+
+    }
+
+
+    /*
+       AI 메시지
+    */
+
+    let eventMessage = "";
+
+
+    if (relevantEvents.length) {
+
+        eventMessage = `
+
+            현재 송도 주변에서 확인되는
+            <strong>${relevantEvents[0].title}</strong>
+            행사를 추천코스에 반영했습니다.
+
+        `;
+
+    }
+    else {
+
+        eventMessage = `
+
+            현재 확인되는 송도 인근 행사가 없어
+            주변 관광지를 중심으로 코스를 구성했습니다.
+
+        `;
+
+    }
+
 
     document.getElementById(
         "aiMessage"
@@ -927,24 +2410,26 @@ function recommend() {
 
         <br><br>
 
-        현재 날씨와
         <strong>${people}</strong> 방문객의
-        <strong>${activity}</strong> 선호도를 고려하여
-
-        송도달빛축제공원역을 출발점으로 하는
-        <strong>${time}</strong> 관광코스를 구성했습니다.
+        <strong>${activity}</strong> 선호도와
+        <strong>${time}</strong> 체류시간을 고려했습니다.
 
         <br><br>
 
-        이동거리와 관광지 간 연계성을 고려하여
-        효율적인 순서로 추천합니다.
+        ${eventMessage}
+
+        <br>
+
+        현재 제공되는 관광정보를 바탕으로
+        송도달빛축제공원역에서 이동하기 좋은
+        관광코스를 구성했습니다.
 
     `;
 
 
-    /* ==================================================
-       경로 HTML
-    ================================================== */
+    /*
+       추천 경로
+    */
 
     let routeHTML = "";
 
@@ -969,33 +2454,89 @@ function recommend() {
 
             </div>
 
+            <div class="route-line"></div>
+
         </div>
 
     `;
 
 
-    routePlaces.forEach(
-        (place, index) => {
+    /*
+       행사 추가
+    */
+
+    relevantEvents.forEach(
+        (event,index) => {
 
             routeHTML += `
 
                 <div class="route-item">
 
                     <div class="route-dot">
-                        ${place.icon}
+                        🎪
                     </div>
 
                     <div class="route-content">
 
                         <strong>
-                            ${index + 1}. ${place.name}
+                            ${index + 1}.
+                            ${escapeHTML(
+                                event.title
+                            )}
                         </strong>
 
                         <span>
-                            송도 관광 추천지
+                            실제 관광정보 API 행사
                         </span>
 
                     </div>
+
+                    <div class="route-line"></div>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    /*
+       관광지 추가
+    */
+
+    places.forEach(
+        (place,index) => {
+
+            routeHTML += `
+
+                <div class="route-item">
+
+                    <div class="route-dot">
+                        📍
+                    </div>
+
+                    <div class="route-content">
+
+                        <strong>
+                            ${
+                                index +
+                                relevantEvents.length +
+                                1
+                            }.
+
+                            ${escapeHTML(
+                                place.title
+                            )}
+                        </strong>
+
+                        <span>
+                            송도 주변 추천 관광지
+                        </span>
+
+                    </div>
+
+                    <div class="route-line"></div>
 
                 </div>
 
@@ -1032,14 +2573,18 @@ function recommend() {
 
     document.getElementById(
         "route"
-    ).innerHTML = routeHTML;
+    ).innerHTML =
+        routeHTML;
 
 
-    /* ==================================================
+    /*
        지도
-    ================================================== */
+    */
 
-    createMap(routePlaces);
+    createRecommendationMap(
+        relevantEvents,
+        places
+    );
 
 
     result.scrollIntoView({
@@ -1053,282 +2598,270 @@ function recommend() {
    지도 생성
 ================================================== */
 
-function createMap(routePlaces) {
+function createRecommendationMap(
+    selectedEvents,
+    selectedPlaces
+) {
 
-    if (
-        typeof kakao === "undefined" ||
-        !kakao.maps
-    ) {
+    if (!map) {
 
-        document.getElementById(
-            "map"
-        ).innerHTML = `
+        map =
+            L.map(
+                "map"
+            );
 
-            <div style="
-                height:100%;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                padding:30px;
-                text-align:center;
-                color:#667085;
-                background:#f8fafc;
-            ">
-
-                <div>
-
-                    <div style="
-                        font-size:40px;
-                        margin-bottom:15px;
-                    ">
-                        🗺️
-                    </div>
-
-                    <strong>
-                        카카오 지도를 불러오지 못했습니다.
-                    </strong>
-
-                    <p>
-                        카카오 JavaScript 키와<br>
-                        Web 플랫폼 주소 설정을 확인해주세요.
-                    </p>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
+        L.tileLayer(
+            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            {
+                attribution:
+                    '&copy; OpenStreetMap contributors'
+            }
+        ).addTo(map);
 
     }
 
 
-    kakao.maps.load(function() {
+    /*
+       기존 마커 삭제
+    */
 
-        const container =
-            document.getElementById("map");
+    markers.forEach(
+        marker =>
+            map.removeLayer(
+                marker
+            )
+    );
 
 
-        const center =
-            new kakao.maps.LatLng(
+    markers = [];
+
+
+    if (routeLine) {
+
+        map.removeLayer(
+            routeLine
+        );
+
+    }
+
+
+    /*
+       전체 경로
+    */
+
+    const route = [
+
+        {
+
+            name:
+                STATION.name,
+
+            lat:
                 STATION.lat,
+
+            lng:
                 STATION.lng
-            );
 
+        },
 
-        const map =
-            new kakao.maps.Map(
-                container,
-                {
-                    center: center,
-                    level: 6
-                }
-            );
+        ...selectedEvents
+            .map(event => ({
 
+                name:
+                    event.title,
 
-        /* ==================================================
-           전체 경로
-        ================================================== */
+                lat:
+                    Number(
+                        event.mapy
+                    ),
 
-        const route = [
-
-            {
-                name: STATION.name,
-                lat: STATION.lat,
-                lng: STATION.lng,
-                icon: "🚇"
-            },
-
-            ...routePlaces,
-
-            {
-                name: STATION.name,
-                lat: STATION.lat,
-                lng: STATION.lng,
-                icon: "🚇"
-            }
-
-        ];
-
-
-        /* ==================================================
-           마커
-        ================================================== */
-
-        route.forEach(
-            function(place, index) {
-
-                const position =
-                    new kakao.maps.LatLng(
-                        place.lat,
-                        place.lng
-                    );
-
-
-                const marker =
-                    new kakao.maps.Marker({
-
-                        map: map,
-
-                        position: position
-
-                    });
-
-
-                const info =
-                    new kakao.maps.InfoWindow({
-
-                        content: `
-
-                            <div style="
-                                padding:8px 12px;
-                                font-size:13px;
-                                white-space:nowrap;
-                            ">
-
-                                ${place.icon}
-                                ${place.name}
-
-                            </div>
-
-                        `
-
-                    });
-
-
-                if (index === 0) {
-
-                    info.open(
-                        map,
-                        marker
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* ==================================================
-           지도 영역 자동 설정
-        ================================================== */
-
-        const bounds =
-            new kakao.maps.LatLngBounds();
-
-
-        route.forEach(
-            place => {
-
-                bounds.extend(
-
-                    new kakao.maps.LatLng(
-                        place.lat,
-                        place.lng
+                lng:
+                    Number(
+                        event.mapx
                     )
 
-                );
+            }))
+            .filter(
+                p =>
+                    p.lat &&
+                    p.lng
+            ),
 
-            }
-        );
+        ...selectedPlaces
+            .map(place => ({
 
+                name:
+                    place.title,
 
-        map.setBounds(bounds);
+                lat:
+                    Number(
+                        place.mapy
+                    ),
 
-
-        /* ==================================================
-           추천 코스 선
-        ================================================== */
-
-        const linePath =
-            route.map(
-
-                place =>
-
-                    new kakao.maps.LatLng(
-                        place.lat,
-                        place.lng
+                lng:
+                    Number(
+                        place.mapx
                     )
 
-            );
+            }))
+            .filter(
+                p =>
+                    p.lat &&
+                    p.lng
+            ),
 
+        {
 
-        const polyline =
-            new kakao.maps.Polyline({
+            name:
+                STATION.name,
 
-                path: linePath,
+            lat:
+                STATION.lat,
 
-                strokeWeight: 5,
-
-                strokeColor: "#005bac",
-
-                strokeOpacity: 0.8,
-
-                strokeStyle: "solid"
-
-            });
-
-
-        polyline.setMap(map);
-
-
-        /* ==================================================
-           거리 계산
-        ================================================== */
-
-        let totalDistance = 0;
-
-
-        for (
-            let i = 0;
-            i < route.length - 1;
-            i++
-        ) {
-
-            totalDistance +=
-
-                getDistance(
-
-                    route[i].lat,
-                    route[i].lng,
-
-                    route[i + 1].lat,
-                    route[i + 1].lng
-
-                );
+            lng:
+                STATION.lng
 
         }
 
-
-        totalDistance =
-            totalDistance.toFixed(1);
+    ];
 
 
-        /* 대략적인 도보 예상시간 */
+    const latlngs = [];
 
-        const estimatedTime =
-            Math.round(
-                totalDistance * 15
+
+    route.forEach(
+        (place,index) => {
+
+            const position =
+                [
+                    place.lat,
+                    place.lng
+                ];
+
+
+            latlngs.push(
+                position
             );
 
 
-        document.getElementById(
-            "routeSummary"
-        ).innerText =
+            const marker =
+                L.marker(
+                    position
+                )
+                .addTo(map);
 
-            totalDistance
-            + "km · 약 "
-            + estimatedTime
-            + "분";
 
-    });
+            marker.bindPopup(
+                `<strong>
+                    ${escapeHTML(
+                        place.name
+                    )}
+                </strong>`
+            );
+
+
+            markers.push(
+                marker
+            );
+
+        }
+    );
+
+
+    /*
+       경로선
+    */
+
+    if (
+        latlngs.length > 1
+    ) {
+
+        routeLine =
+            L.polyline(
+                latlngs,
+                {
+
+                    color:
+                        "#005bac",
+
+                    weight:
+                        5,
+
+                    opacity:
+                        .8
+
+                }
+            )
+            .addTo(map);
+
+    }
+
+
+    /*
+       지도 자동 맞춤
+    */
+
+    if (
+        latlngs.length
+    ) {
+
+        map.fitBounds(
+            latlngs,
+            {
+                padding:
+                    [40,40]
+            }
+        );
+
+    }
+
+
+    /*
+       거리 계산
+    */
+
+    let distance = 0;
+
+
+    for (
+        let i = 0;
+        i <
+        route.length - 1;
+        i++
+    ) {
+
+        distance +=
+            getDistance(
+                route[i].lat,
+                route[i].lng,
+
+                route[i+1].lat,
+                route[i+1].lng
+            );
+
+    }
+
+
+    const walkTime =
+        Math.round(
+            distance * 15
+        );
+
+
+    document.getElementById(
+        "routeSummary"
+    ).innerText =
+
+        distance.toFixed(1)
+        + "km · 약 "
+        + walkTime
+        + "분";
 
 }
 
 
 /* ==================================================
-   좌표 거리 계산
+   거리 계산
 ================================================== */
 
 function getDistance(
@@ -1338,53 +2871,78 @@ function getDistance(
     lon2
 ) {
 
-    const R = 6371;
+    const R =
+        6371;
 
 
     const dLat =
-        (lat2 - lat1)
-        * Math.PI / 180;
+        (
+            lat2 -
+            lat1
+        )
+        *
+        Math.PI /
+        180;
 
 
     const dLon =
-        (lon2 - lon1)
-        * Math.PI / 180;
+        (
+            lon2 -
+            lon1
+        )
+        *
+        Math.PI /
+        180;
 
 
     const a =
 
-        Math.sin(dLat / 2)
+        Math.sin(
+            dLat / 2
+        )
         *
-        Math.sin(dLat / 2)
+        Math.sin(
+            dLat / 2
+        )
 
         +
 
         Math.cos(
-            lat1 * Math.PI / 180
+            lat1 *
+            Math.PI /
+            180
         )
 
         *
 
         Math.cos(
-            lat2 * Math.PI / 180
+            lat2 *
+            Math.PI /
+            180
         )
 
         *
 
-        Math.sin(dLon / 2)
+        Math.sin(
+            dLon / 2
+        )
         *
-        Math.sin(dLon / 2);
+        Math.sin(
+            dLon / 2
+        );
 
 
     const c =
 
-        2
-        *
+        2 *
+
         Math.atan2(
 
             Math.sqrt(a),
 
-            Math.sqrt(1 - a)
+            Math.sqrt(
+                1 - a
+            )
 
         );
 
@@ -1395,10 +2953,215 @@ function getDistance(
 
 
 /* ==================================================
-   페이지 시작
+   날씨
+================================================== */
+
+async function loadWeather() {
+
+    try {
+
+        const url =
+
+            "https://api.open-meteo.com/v1/forecast"
+            +
+            "?latitude=37.4079"
+            +
+            "&longitude=126.6253"
+            +
+            "&current=temperature_2m,weather_code"
+            +
+            "&timezone=Asia%2FSeoul";
+
+
+        const response =
+            await fetch(url);
+
+
+        const data =
+            await response.json();
+
+
+        const current =
+            data.current;
+
+
+        let icon =
+            "☀️";
+
+        let text =
+            "맑음";
+
+
+        if (
+            current.weather_code >= 51
+        ) {
+
+            icon =
+                "🌧️";
+
+            text =
+                "비";
+
+        }
+
+        else if (
+            current.weather_code >= 45
+        ) {
+
+            icon =
+                "🌫️";
+
+            text =
+                "안개";
+
+        }
+
+        else if (
+            current.weather_code >= 3
+        ) {
+
+            icon =
+                "☁️";
+
+            text =
+                "흐림";
+
+        }
+
+
+        document.getElementById(
+            "weatherIcon"
+        ).innerText =
+            icon;
+
+
+        document.getElementById(
+            "temperature"
+        ).innerText =
+
+            Math.round(
+                current.temperature_2m
+            )
+            + "℃";
+
+
+        document.getElementById(
+            "weatherText"
+        ).innerText =
+            text;
+
+
+        document.getElementById(
+            "weatherDetail"
+        ).innerText =
+            "송도달빛축제공원역 실시간 날씨";
+
+    }
+    catch(error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* ==================================================
+   날짜 포맷
+================================================== */
+
+function formatDate(value) {
+
+    if (!value)
+        return "-";
+
+
+    if (
+        value.length === 8
+    ) {
+
+        return (
+
+            value.substring(0,4)
+            + "."
+            +
+            value.substring(4,6)
+            + "."
+            +
+            value.substring(6,8)
+
+        );
+
+    }
+
+
+    return value;
+
+}
+
+
+/* ==================================================
+   HTML 안전 처리
+================================================== */
+
+function escapeHTML(value) {
+
+    if (!value)
+        return "";
+
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* ==================================================
+   홈페이지 HTML 제거
+================================================== */
+
+function stripHTML(value) {
+
+    if (!value)
+        return "#";
+
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+    div.innerHTML =
+        value;
+
+
+    return (
+        div.querySelector("a")
+        ?.href
+        ||
+        value
+            .replace(
+                /<[^>]*>/g,
+                ""
+            )
+    );
+
+}
+
+
+/* ==================================================
+   시작
 ================================================== */
 
 loadWeather();
+
+loadEvents();
+
+loadTouristPlaces();
 
 </script>
 
